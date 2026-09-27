@@ -36,7 +36,7 @@ export default function Contact() {
             </a>
             <a
               className="action-btn outline"
-              href="https://wa.me/919466595905"
+              href="https://wa.me/919991191527"
               target="_blank"
               rel="noopener noreferrer"
             >
