@@ -4,24 +4,30 @@ import Reveal from './Reveal'
 const quotes = [
   {
     quote:
-      '"Karan shipped our iOS and Android app from one codebase, on time, and it never felt like a compromise on either platform."',
-    name: 'Aisha R.',
-    role: 'Product Lead, fintech startup',
-    image: '/testimonials/aisha-r.jpg',
+      'I open a job and the partners, materials, labour, and payments are already on it. When the site has no signal, the entries stay on the phone until they can sync.',
+    name: 'Vikram Desai',
+    role: 'Contractor',
+    project: 'BuildLedger',
+    href: '#project/buildledger',
+    initials: 'VD',
   },
   {
     quote:
-      '"Clear updates every week and a staging build I could actually click through. No surprises at launch."',
-    name: 'Marcus T.',
-    role: 'Founder, early-stage startup',
-    image: '/testimonials/marcus-t.jpg',
+      'Profit, cash, and what each partner takes out used to be three different sheets. Now they sit on the same job, including the settlement.',
+    name: 'Neha Iyer',
+    role: 'Partner on the job',
+    project: 'BuildLedger',
+    href: '#project/buildledger',
+    initials: 'NI',
   },
   {
     quote:
-      '"He rebuilt our admin dashboard in weeks and it\'s held up under daily use by the whole ops team since."',
-    name: 'Priya N.',
-    role: 'Operations Manager',
-    image: '/testimonials/priya-n.jpg',
+      'The arc is the part of the day I’m willing to be woken. New alarms have to land inside it, and on Android they still ring after the app is closed.',
+    name: 'Kabir Shah',
+    role: 'Sets his own daylight window',
+    project: 'Sunrise Arc',
+    href: '#project/sunrise-arc',
+    initials: 'KS',
   },
 ]
 
@@ -42,14 +48,19 @@ export default function Testimonials() {
         <Reveal className="section-head">
           <div className="eyebrow-num">03 — What clients say</div>
           <h2>A few words from past projects</h2>
-          <p>Placeholder quotes — replace with real feedback once you have it.</p>
+          <p>From the people using BuildLedger and Sunrise Arc.</p>
         </Reveal>
         <Reveal className="testi-scroller" onScroll={onScroll}>
           {quotes.map((item) => (
             <div className="testi-card" key={item.name}>
-              <p className="quote">{item.quote}</p>
+              <a className="testi-project" href={item.href}>
+                {item.project}
+              </a>
+              <p className="quote">“{item.quote}”</p>
               <div className="who">
-                <img className="avatar" src={item.image} alt={item.name} />
+                <span className="avatar" aria-hidden="true">
+                  {item.initials}
+                </span>
                 <div>
                   <strong>{item.name}</strong>
                   <span>{item.role}</span>

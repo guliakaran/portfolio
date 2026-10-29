@@ -1,41 +1,7 @@
 import { useRef } from 'react'
+import { projects } from '../data/projects'
 import Reveal from './Reveal'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
-
-const projects = [
-  {
-    category: 'Fintech · Mobile',
-    year: '2025',
-    title: 'Personal wallet app',
-    description:
-      'Onboarding, transfers, and card controls — one React Native codebase, shipped to both app stores.',
-    tags: ['React Native', 'Node.js', 'Express'],
-  },
-  {
-    category: 'Marketplace · Web',
-    year: '2024',
-    title: 'Vendor marketplace platform',
-    description:
-      'Seller dashboards, order tracking, and search on a React front end with role-based access.',
-    tags: ['React JS', 'Node.js'],
-  },
-  {
-    category: 'Health & Fitness · Mobile',
-    year: '2024',
-    title: 'Activity tracking app',
-    description:
-      'Offline-first sync and background tracking, with an onboarding flow that cut signup drop-off.',
-    tags: ['React Native', 'iOS', 'Android'],
-  },
-  {
-    category: 'Internal tools · Web',
-    year: '2023',
-    title: 'Operations dashboard',
-    description:
-      'Real-time order and inventory tracking, replacing a spreadsheet for a 20-person ops team.',
-    tags: ['React JS', 'Express'],
-  },
-]
 
 function TiltCard({ project }) {
   const cardRef = useRef(null)
@@ -61,6 +27,8 @@ function TiltCard({ project }) {
 
   return (
     <Reveal
+      as="a"
+      href={`#project/${project.slug}`}
       className="tilt-card"
       ref={cardRef}
       onPointerMove={onMove}
@@ -72,12 +40,13 @@ function TiltCard({ project }) {
         <span>{project.year}</span>
       </div>
       <h3>{project.title}</h3>
-      <p>{project.description}</p>
+      <p>{project.card}</p>
       <div className="tags">
         {project.tags.map((tag) => (
           <span key={tag}>{tag}</span>
         ))}
       </div>
+      <span className="card-link">View details</span>
     </Reveal>
   )
 }
@@ -89,11 +58,11 @@ export default function Work() {
         <Reveal className="section-head">
           <div className="eyebrow-num">02 — Selected work</div>
           <h2>A few recent builds</h2>
-          <p>Swap these for your own case studies and outcomes.</p>
+          <p>Two products, built end to end. Open either one for the details.</p>
         </Reveal>
         <div className="work-grid">
           {projects.map((project) => (
-            <TiltCard key={project.title} project={project} />
+            <TiltCard key={project.slug} project={project} />
           ))}
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Reveal from './Reveal'
 
 const items = [
@@ -23,23 +24,60 @@ const items = [
   },
 ]
 
+function Chevron() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M6 9.5 12 15l6-5.5"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function FAQItem({ item, index }) {
+  const [open, setOpen] = useState(false)
+  const panelId = `faq-panel-${index}`
+
+  return (
+    <div className={open ? 'faq-item is-open' : 'faq-item'}>
+      <button
+        type="button"
+        className="faq-toggle"
+        aria-expanded={open}
+        aria-controls={panelId}
+        onClick={() => setOpen((current) => !current)}
+      >
+        <span className="faq-num">{String(index + 1).padStart(2, '0')}</span>
+        <span className="faq-q">{item.q}</span>
+        <span className="plus">
+          <Chevron />
+        </span>
+      </button>
+      <div className="faq-panel" id={panelId}>
+        <div className="faq-panel-inner">
+          <p>{item.a}</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function FAQ() {
   return (
     <section className="section" id="faq">
-      <div className="wrap">
-        <Reveal className="section-head">
+      <div className="wrap faq-layout">
+        <Reveal className="section-head faq-intro">
           <div className="eyebrow-num">05 — FAQ</div>
           <h2>Common questions</h2>
+          <p>Scope, timeline, and how a project usually starts.</p>
         </Reveal>
         <Reveal className="faq-list">
-          {items.map((item) => (
-            <details className="faq-item" key={item.q}>
-              <summary>
-                {item.q}
-                <span className="plus">+</span>
-              </summary>
-              <p>{item.a}</p>
-            </details>
+          {items.map((item, index) => (
+            <FAQItem key={item.q} item={item} index={index} />
           ))}
         </Reveal>
       </div>
